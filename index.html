@@ -15,34 +15,30 @@
             min-height: 100vh;
             margin: 0;
             font-family: 'Arial', sans-serif;
-            overflow: hidden; /* Hide potential overflow from the glow */
+            overflow: hidden; 
         }
 
         .proposal-container {
             text-align: center;
             padding: 40px;
             border-radius: 15px;
-            background: rgba(0, 0, 0, 0.4); /* Semi-transparent overlay */
-            box-shadow: 0 0 20px rgba(255, 105, 180, 0.5); /* Soft initial pink glow */
+            background: rgba(0, 0, 0, 0.4); 
+            box-shadow: 0 0 20px rgba(255, 105, 180, 0.5); 
             position: relative;
-            z-index: 2; /* Ensures content is above the background glow */
+            z-index: 2; 
         }
 
         /* --- THE ANIMATION GLOW EFFECT --- */
         .proposal-text {
             font-size: 3em;
             font-weight: bold;
-            color: #ffe4e1; /* Misty Rose color */
+            color: #ffe4e1; 
             text-shadow: 
-                0 0 10px rgba(255, 60, 100, 0.8), /* Inner red/pink glow */
-                0 0 20px rgba(255, 60, 100, 0.6), /* Medium glow */
-                0 0 40px rgba(255, 60, 100, 0.4); /* Outer blur glow */
-            animation: pulse-glow 2s infinite alternate; /* Apply the glow animation */
-            transition: transform 0.3s ease-in-out;
-        }
-
-        .proposal-text:hover {
-            transform: scale(1.05); /* Slight scale on hover for interactivity */
+                0 0 10px rgba(255, 60, 100, 0.8), 
+                0 0 20px rgba(255, 60, 100, 0.6), 
+                0 0 40px rgba(255, 60, 100, 0.4); 
+            animation: pulse-glow 2s infinite alternate; 
+            margin-bottom: 30px; /* Space below the text */
         }
 
         @keyframes pulse-glow {
@@ -62,18 +58,43 @@
                 filter: brightness(1.2);
             }
         }
-        
-        /* Optional: Add a subtle animation to the supporting text */
-        .supporting-text {
-            font-size: 1.2em;
-            margin-top: 20px;
-            opacity: 0.9;
-            animation: fadeIn 3s ease-out;
+
+        /* --- YES BUTTON STYLING --- */
+        .yes-button {
+            padding: 15px 40px;
+            font-size: 1.5em;
+            font-weight: bold;
+            color: white;
+            background-color: #ff3366; /* Bright Red/Pink */
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 0 15px #ff3366, 0 0 30px #ff3366; /* Button glow */
+            transition: all 0.2s ease-in-out;
+            animation: glow-border 1.5s infinite alternate;
         }
 
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 0.9; }
+        .yes-button:hover {
+            background-color: #ff5082;
+            transform: scale(1.05);
+            box-shadow: 0 0 20px #ff5082, 0 0 40px #ff5082;
+        }
+        
+        /* Animation for the button's border/shadow */
+        @keyframes glow-border {
+            from { box-shadow: 0 0 10px #ff3366, 0 0 20px #ff3366; }
+            to { box-shadow: 0 0 15px #ff5082, 0 0 30px #ff5082; }
+        }
+
+        /* --- CONFIRMATION MESSAGE STYLING --- */
+        #confirmation-message {
+            margin-top: 30px;
+            font-size: 2em;
+            color: #4CAF50; /* Green for celebration */
+            font-weight: bold;
+            opacity: 0; /* Starts hidden */
+            transition: opacity 1s ease-in-out;
+            text-shadow: 0 0 10px #4CAF50;
         }
 
     </style>
@@ -83,15 +104,32 @@
     <div class="proposal-container">
         
         <div class="proposal-text">
-            My Dearest Aliza , <br>
+            My Dearest [Girlfriend's Name],<br>
             Will You Marry Me?
         </div>
-        <p class="supporting-text">
-            You are the love of my life and my best friend. Every day with you is a gift.<br>
-            (Click 'Yes' to say I do! Just kidding, I'm waiting for your real answer!)
-        </p>
+        <button class="yes-button" onclick="showConfirmation()">
+            YES!
+        </button>
+
+        <div id="confirmation-message">
+            I KNEW IT! I love you so much! 🎉
+        </div>
 
     </div>
+    
+    <script>
+        function showConfirmation() {
+            // Hide the button (optional)
+            document.querySelector('.yes-button').style.display = 'none';
+            
+            // Show the confirmation message
+            const confirmation = document.getElementById('confirmation-message');
+            confirmation.style.opacity = '1';
+            
+            // You can also change the main proposal text to something else here if you like!
+            // document.querySelector('.proposal-text').innerHTML = "We're Engaged!";
+        }
+    </script>
 
 </body>
 </html>
